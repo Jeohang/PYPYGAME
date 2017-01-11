@@ -1,0 +1,8 @@
+# coding=utf-8
+layout Size = 800 * 450
+
+running part Size = 550 * 400
+
+button part Size = 250 * 400
+
+mm > px ��ȯ
