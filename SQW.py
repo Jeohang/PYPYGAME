@@ -34,9 +34,10 @@ def __main__():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 finished = True
-            if event.type == pg.MOUSEBUTTONDOWN:  # 작동안됨.
-                if (event.pos[0], event.pos[1]) == (555, 35) and pg.mouse.get_pressed()[0]:  # 작동안됨.
-                    pg.draw.rect(Map.ourScreen, (0, 0, 0), pg.Rect(555, 35, 60, 55))  # 작동안됨.
+            if event.type == pg.MOUSEBUTTONDOWN:  # 마우스 클릭 인식함.
+                if (event.pos[0], event.pos[1]) == (555, 35):  # 좌표 인식함.
+                    print("done")  # 출력함.
+                    pg.draw.rect(Map.ourScreen, (255, 255, 255), pg.Rect(100, 100, 60, 55))  # 작동안됨.
         Map.ourScreen.fill((0, 0, 0))
         Action.moving_arrow(Map.a, Map.b)
         pressed = pg.key.get_pressed()
@@ -61,4 +62,3 @@ def __main__():
 
 if __name__ == '__main__':
     __main__()
-
