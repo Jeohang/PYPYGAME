@@ -34,10 +34,39 @@ def __main__():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 finished = True
-            if event.type == pg.MOUSEBUTTONDOWN:  # 마우스 클릭 인식함.
-                if (event.pos[0], event.pos[1]) == (555, 35):  # 좌표 인식함.
-                    print("done")  # 출력함.
-                    pg.draw.rect(Map.ourScreen, (255, 255, 255), pg.Rect(100, 100, 60, 55))  # 작동안됨.
+            if event.type == pg.MOUSEBUTTONDOWN:
+                for x in range(555, 615):
+                    for y in range(35, 90):
+                        if (event.pos[0], event.pos[1]) == (x, y):
+                            print("go straight")
+                for x in range(630, 690):
+                    for y in range(35, 90):
+                        if (event.pos[0], event.pos[1]) == (x, y):
+                            print("turn left")
+                for x in range(705, 765):
+                    for y in range(35, 90):
+                        if (event.pos[0], event.pos[1]) == (x, y):
+                            print("turn right")
+                for x in range(555, 615):
+                    for y in range(110, 165):
+                        if (event.pos[0], event.pos[1]) == (x, y):
+                            print("action")
+                for x in range(630, 690):
+                    for y in range(110, 165):
+                        if (event.pos[0], event.pos[1]) == (x, y):
+                            print("clear")
+                for x in range(705, 765):
+                    for y in range(110, 165):
+                        if (event.pos[0], event.pos[1]) == (x, y):
+                            print("run")
+                for x in range(555, 655):
+                    for y in range(180, 200):
+                        if (event.pos[0], event.pos[1]) == (x, y):
+                            print("option")
+                for x in range(665, 765):
+                    for y in range(180, 200):
+                        if (event.pos[0], event.pos[1]) == (x, y):
+                            print("setting")
         Map.ourScreen.fill((0, 0, 0))
         Action.moving_arrow(Map.a, Map.b)
         pressed = pg.key.get_pressed()
@@ -47,14 +76,14 @@ def __main__():
         if pressed[pg.K_LEFT]: Map.a -= 5
         # pg.draw.rect(Map.ourScreen, (255, 255, 255), pg.Rect(20, 20, 500, 410))  # running part
         pg.draw.rect(Map.ourScreen, (0, 255, 0), pg.Rect(540, 20, 240, 190))  # button part
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(555, 35, 60, 55))
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(630, 35, 60, 55))
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(705, 35, 60, 55))
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(555, 110, 60, 55))
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(630, 110, 60, 55))
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(705, 110, 60, 55))
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(555, 180, 100, 20))
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(665, 180, 100, 20))
+        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(555, 35, 60, 55))  # 555, 35, 60, 55
+        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(630, 35, 60, 55))  # 630, 35, 60, 55
+        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(705, 35, 60, 55))  # 705, 35, 60, 55
+        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(555, 110, 60, 55))  # 555, 110, 60, 55
+        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(630, 110, 60, 55))  # 630, 110, 60, 55
+        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(705, 110, 60, 55))   # 705, 110, 60, 55
+        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(555, 180, 100, 20))  # 555, 180, 100, 20
+        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(665, 180, 100, 20))  # 665, 180, 100, 20
         pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
         pg.display.flip()
         clock.tick(60)
