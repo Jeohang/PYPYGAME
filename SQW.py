@@ -10,6 +10,14 @@ class Map:
     rect_x = 80
     rect_y = 80
     arrow = pg.image.load("arrow.jpg")
+    straight = pg.image.load("straight.jpg")
+    left = pg.image.load("left.jpg")
+    right = pg.image.load("right.jpg")
+    action = pg.image.load("action.jpg")
+    clear = pg.image.load("clear.jpg")
+    run = pg.image.load("run.jpg")
+    setting = pg.image.load("setting.jpg")
+    option = pg.image.load("option.jpg")
     a = 20
     b = 25
 
@@ -25,6 +33,30 @@ class Action:
 
     def moving_arrow(x, y):
         Map.ourScreen.blit(Map.arrow, (x, y))
+
+    def straight(x, y):
+        Map.ourScreen.blit(Map.straight, (x, y))
+
+    def left(x, y):
+        Map.ourScreen.blit(Map.left, (x, y))
+
+    def right(x, y):
+        Map.ourScreen.blit(Map.right, (x, y))
+
+    def action(x, y):
+        Map.ourScreen.blit(Map.action, (x, y))
+
+    def clear(x, y):
+        Map.ourScreen.blit(Map.clear, (x, y))
+
+    def run(x, y):
+        Map.ourScreen.blit(Map.run, (x, y))
+
+    def setting(x, y):
+        Map.ourScreen.blit(Map.setting, (x, y))
+
+    def option(x, y):
+        Map.ourScreen.blit(Map.option, (x, y))
 
 
 def __main__():
@@ -76,14 +108,14 @@ def __main__():
         if pressed[pg.K_LEFT]: Map.a -= 5
         # pg.draw.rect(Map.ourScreen, (255, 255, 255), pg.Rect(20, 20, 500, 410))  # running part
         pg.draw.rect(Map.ourScreen, (0, 255, 0), pg.Rect(540, 20, 240, 190))  # button part
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(555, 35, 60, 55))  # 555, 35, 60, 55
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(630, 35, 60, 55))  # 630, 35, 60, 55
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(705, 35, 60, 55))  # 705, 35, 60, 55
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(555, 110, 60, 55))  # 555, 110, 60, 55
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(630, 110, 60, 55))  # 630, 110, 60, 55
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(705, 110, 60, 55))   # 705, 110, 60, 55
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(555, 180, 100, 20))  # 555, 180, 100, 20
-        pg.draw.rect(Map.ourScreen, (155, 155, 155), pg.Rect(665, 180, 100, 20))  # 665, 180, 100, 20
+        Action.straight(555, 35)
+        Action.left(630, 35)
+        Action.right(705, 35)
+        Action.action(555, 110)
+        Action.clear(630, 110)
+        Action.run(705, 110)
+        Action.option(555, 180)
+        Action.setting(665, 180)
         pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
         pg.display.flip()
         clock.tick(60)
