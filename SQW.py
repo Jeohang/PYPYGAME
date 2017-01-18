@@ -9,15 +9,19 @@ class Map:
     ourScreen = pg.display.set_mode((display_width, display_height))
     rect_x = 80
     rect_y = 80
-    arrow = pg.image.load("arrow.jpg")
-    straight = pg.image.load("straight.jpg")
-    left = pg.image.load("left.jpg")
-    right = pg.image.load("right.jpg")
-    action = pg.image.load("action.jpg")
-    clear = pg.image.load("clear.jpg")
-    run = pg.image.load("run.jpg")
-    setting = pg.image.load("setting.jpg")
-    option = pg.image.load("option.jpg")
+    arrow_r = pg.image.load("arrows\\arrow_r.jpg")
+    arrow_l = pg.image.load("arrows\\arrow_l.jpg")
+    arrow_d = pg.image.load("arrows\\arrow_d.jpg")
+    arrow_u = pg.image.load("arrows\\arrow_u.jpg")
+    straight = pg.image.load("button\\straight.jpg")
+    left = pg.image.load("button\\left.jpg")
+    right = pg.image.load("button\\right.jpg")
+    action = pg.image.load("button\\action.jpg")
+    clear = pg.image.load("button\\clear.jpg")
+    run = pg.image.load("button\\run.jpg")
+    setting = pg.image.load("button\\setting.jpg")
+    option = pg.image.load("button\\option.jpg")
+    map = pg.image.load("maps\\map1.jpg")
     a = 20
     b = 25
 
@@ -26,13 +30,22 @@ class Map:
 
 
 class Action:
-    mouse_pos = pg.mouse.get_pos()
+    TT = []  # 1(s), 2(l), 3(r), 4(a)
 
     def __init__(self):
         pass
 
-    def moving_arrow(x, y):
-        Map.ourScreen.blit(Map.arrow, (x, y))
+    def moving_arrow_r(x, y):
+        Map.ourScreen.blit(Map.arrow_r, (x, y))
+
+    def moving_arrow_l(x, y):
+        Map.ourScreen.blit(Map.arrow_l, (x, y))
+
+    def moving_arrow_d(x, y):
+        Map.ourScreen.blit(Map.arrow_d, (x, y))
+
+    def moving_arrow_u(x, y):
+        Map.ourScreen.blit(Map.arrow_u, (x, y))
 
     def straight(x, y):
         Map.ourScreen.blit(Map.straight, (x, y))
@@ -71,18 +84,22 @@ def __main__():
                     for y in range(35, 90):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("go straight")
+                            Action.TT.append(1)
                 for x in range(630, 690):
                     for y in range(35, 90):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("turn left")
+                            Action.TT.append(2)
                 for x in range(705, 765):
                     for y in range(35, 90):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("turn right")
+                            Action.TT.append(3)
                 for x in range(555, 615):
                     for y in range(110, 165):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("action")
+                            Action.TT.append(4)
                 for x in range(630, 690):
                     for y in range(110, 165):
                         if (event.pos[0], event.pos[1]) == (x, y):
@@ -100,13 +117,17 @@ def __main__():
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("setting")
         Map.ourScreen.fill((0, 0, 0))
-        Action.moving_arrow(Map.a, Map.b)
         pressed = pg.key.get_pressed()
-        if pressed[pg.K_UP]: Map.b -= 5
-        if pressed[pg.K_DOWN]: Map.b += 5
-        if pressed[pg.K_RIGHT]: Map.a += 5
-        if pressed[pg.K_LEFT]: Map.a -= 5
-        # pg.draw.rect(Map.ourScreen, (255, 255, 255), pg.Rect(20, 20, 500, 410))  # running part
+        if pressed[pg.K_UP]:
+            Map.b -= 5
+        if pressed[pg.K_DOWN]:
+            Map.b += 5
+        if pressed[pg.K_RIGHT]:
+            Map.a += 5
+        if pressed[pg.K_LEFT]:
+            Map.a -= 5
+        #  pg.draw.rect(Map.ourScreen, (255, 255, 255), pg.Rect(20, 20, 500, 410))  # running part
+        Map.ourScreen.blit(Map.map, (20, 20))
         pg.draw.rect(Map.ourScreen, (0, 255, 0), pg.Rect(540, 20, 240, 190))  # button part
         Action.straight(555, 35)
         Action.left(630, 35)
@@ -116,6 +137,7 @@ def __main__():
         Action.run(705, 110)
         Action.option(555, 180)
         Action.setting(665, 180)
+        Action.moving_arrow_r(Map.a, Map.b)
         pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
         pg.display.flip()
         clock.tick(60)
