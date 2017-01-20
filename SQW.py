@@ -1,22 +1,43 @@
 import pygame as pg
-import SQW_Action
-import SQW_Map
+import Action
+import Map
 pg.init()
 point = 80
 
 
-def run_TT():
-    if SQW_Action.Action.status[0] == 1:
-        for choice in SQW_Action.Action.TT:
-            if choice == "1":
-                SQW_Action.Action.moving_arrow_r(100, 25)  # 좌표가 문제
-                print(type(choice))
-            elif choice == "2":
-                SQW_Action.Action.moving_arrow_u(20, 25)
-            elif choice == "3":
-                SQW_Action.Action.moving_arrow_d(20, 25)
-            else:
-                pass
+def run_execution_list():
+    if Action.status[0] == 1:
+        for choice in Action.execution_list:  # execution_list 에서 choice 값을 받아오지 못하는 것 같음.
+            if choice == 1:
+                Action.moving_arrow_r(Map.current_x + 80, Map.current_y)
+            elif choice == 2:
+                Action.moving_arrow_u(Map.current_x, Map.current_y)
+            elif choice == 3:
+                Action.moving_arrow_d(Map.current_x, Map.current_y)
+    if Action.status[0] == 2:
+        for choice in Action.execution_list:  # execution_list 에서 choice 값을 받아오지 못하는 것 같음.
+            if choice == 1:
+                Action.moving_arrow_l(Map.current_x - 80, Map.current_y)
+            if choice == 2:
+                Action.moving_arrow_d(Map.current_x, Map.current_y)
+            if choice == 3:
+                Action.moving_arrow_u(Map.current_x, Map.current_y)
+    if Action.status[0] == 3:
+        for choice in Action.execution_list:  # execution_list 에서 choice 값을 받아오지 못하는 것 같음.
+            if choice == 1:
+                Action.moving_arrow_d(Map.current_x, Map.current_y + 80)
+            if choice == 2:
+                Action.moving_arrow_r(Map.current_x, Map.current_y)
+            if choice == 3:
+                Action.moving_arrow_l(Map.current_x, Map.current_y)
+    if Action.status[0] == 4:
+        for choice in Action.execution_list:  # execution_list 에서 choice 값을 받아오지 못하는 것 같음.
+            if choice == 1:
+                Action.moving_arrow_u(Map.current_x, Map.current_y - 80)
+            if choice == 2:
+                Action.moving_arrow_l(Map.current_x, Map.current_y)
+            if choice == 3:
+                Action.moving_arrow_r(Map.current_x, Map.current_y)
 
 
 def __main__():
@@ -31,22 +52,22 @@ def __main__():
                     for y in range(35, 90):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("go straight")
-                            SQW_Action.Action.TT.append("1")
+                            Action.execution_list.append(1)
                 for x in range(630, 690):
                     for y in range(35, 90):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("turn left")
-                            SQW_Action.Action.TT.append(2)
+                            Action.execution_list.append(2)
                 for x in range(705, 765):
                     for y in range(35, 90):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("turn right")
-                            SQW_Action.Action.TT.append(3)
+                            Action.execution_list.append(3)
                 for x in range(555, 615):
                     for y in range(110, 165):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("action")
-                            SQW_Action.Action.TT.append(4)
+                            Action.execution_list.append(4)
                 for x in range(630, 690):
                     for y in range(110, 165):
                         if (event.pos[0], event.pos[1]) == (x, y):
@@ -54,6 +75,7 @@ def __main__():
                 for x in range(705, 765):
                     for y in range(110, 165):
                         if (event.pos[0], event.pos[1]) == (x, y):
+                            run_execution_list()
                             print("run")
                 for x in range(555, 655):
                     for y in range(180, 200):
@@ -63,20 +85,19 @@ def __main__():
                     for y in range(180, 200):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("setting")
-        SQW_Map.Map.ourScreen.fill((0, 0, 0))
-        SQW_Map.Map.ourScreen.blit(SQW_Map.Map.map, (20, 20))
-        pg.draw.rect(SQW_Map.Map.ourScreen, (0, 255, 0), pg.Rect(540, 20, 240, 190))  # button part
-        SQW_Action.Action.moving_arrow_r(20, 25)
-        SQW_Action.Action.straight(555, 35)
-        SQW_Action.Action.left(630, 35)
-        SQW_Action.Action.right(705, 35)
-        SQW_Action.Action.action(555, 110)
-        SQW_Action.Action.clear(630, 110)
-        SQW_Action.Action.run(705, 110)
-        SQW_Action.Action.option(555, 180)
-        SQW_Action.Action.setting(665, 180)
-        SQW_Action.Action.moving_arrow_r(SQW_Map.Map.a, SQW_Map.Map.b)
-        pg.draw.rect(SQW_Map.Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
+        Map.ourScreen.fill((0, 0, 0))
+        print(Action.status)
+        Map.ourScreen.blit(Map.map1, (20, 20))
+        pg.draw.rect(Map.ourScreen, (0, 255, 0), pg.Rect(540, 20, 240, 190))  # button part
+        Action.straight(555, 35)
+        Action.left(630, 35)
+        Action.right(705, 35)
+        Action.action(555, 110)
+        Action.clear(630, 110)
+        Action.run(705, 110)
+        Action.option(555, 180)
+        Action.setting(665, 180)
+        pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
         pg.display.flip()
         clock.tick(60)
 
