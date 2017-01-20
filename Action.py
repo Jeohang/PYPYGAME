@@ -10,25 +10,25 @@ status = [0]
 
 def moving_arrow_r(x, y):
     Map.ourScreen.blit(Map.arrow_r, (x, y))
-    status.pop()
+    del status[0]
     status.append(1)
 
 
 def moving_arrow_l(x, y):
     Map.ourScreen.blit(Map.arrow_l, (x, y))
-    status.pop()
+    del status[0]
     status.append(2)
 
 
 def moving_arrow_d(x, y):
     Map.ourScreen.blit(Map.arrow_d, (x, y))
-    status.pop()
+    del status[0]
     status.append(3)
 
 
 def moving_arrow_u(x, y):
     Map.ourScreen.blit(Map.arrow_u, (x, y))
-    status.pop()
+    del status[0]
     status.append(4)
 
 

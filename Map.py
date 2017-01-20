@@ -23,3 +23,5 @@ option = pg.image.load('button\\option.jpg')
 map1 = pg.image.load("maps\\map1.jpg")
 a = 20
 b = 25
+current_x = 20
+current_y = 25
