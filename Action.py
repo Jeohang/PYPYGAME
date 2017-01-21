@@ -5,30 +5,30 @@ pg.init()
 
 
 execution_list = []  # 1(s), 2(l), 3(r), 4(a)
-status = [0]
+status = [1]
 
 
 def moving_arrow_r(x, y):
     Map.ourScreen.blit(Map.arrow_r, (x, y))
-    del status[0]
+    status.pop()
     status.append(1)
 
 
 def moving_arrow_l(x, y):
     Map.ourScreen.blit(Map.arrow_l, (x, y))
-    del status[0]
+    status.pop()
     status.append(2)
 
 
 def moving_arrow_d(x, y):
     Map.ourScreen.blit(Map.arrow_d, (x, y))
-    del status[0]
+    status.pop()
     status.append(3)
 
 
 def moving_arrow_u(x, y):
     Map.ourScreen.blit(Map.arrow_u, (x, y))
-    del status[0]
+    status.pop()
     status.append(4)
 
 
