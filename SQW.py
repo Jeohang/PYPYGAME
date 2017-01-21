@@ -7,7 +7,7 @@ point = 80
 
 def run_execution_list():
     if Action.status[0] == 1:
-        for choice in Action.execution_list:  # execution_list 에서 choice 값을 받아오지 못하는 것 같음.
+        for choice in Action.execution_list:
             if choice == 1:
                 Action.moving_arrow_r(Map.current_x + 80, Map.current_y)
             elif choice == 2:
@@ -15,7 +15,7 @@ def run_execution_list():
             elif choice == 3:
                 Action.moving_arrow_d(Map.current_x, Map.current_y)
     if Action.status[0] == 2:
-        for choice in Action.execution_list:  # execution_list 에서 choice 값을 받아오지 못하는 것 같음.
+        for choice in Action.execution_list:
             if choice == 1:
                 Action.moving_arrow_l(Map.current_x - 80, Map.current_y)
             if choice == 2:
@@ -23,7 +23,7 @@ def run_execution_list():
             if choice == 3:
                 Action.moving_arrow_u(Map.current_x, Map.current_y)
     if Action.status[0] == 3:
-        for choice in Action.execution_list:  # execution_list 에서 choice 값을 받아오지 못하는 것 같음.
+        for choice in Action.execution_list:
             if choice == 1:
                 Action.moving_arrow_d(Map.current_x, Map.current_y + 80)
             if choice == 2:
@@ -31,7 +31,7 @@ def run_execution_list():
             if choice == 3:
                 Action.moving_arrow_l(Map.current_x, Map.current_y)
     if Action.status[0] == 4:
-        for choice in Action.execution_list:  # execution_list 에서 choice 값을 받아오지 못하는 것 같음.
+        for choice in Action.execution_list:
             if choice == 1:
                 Action.moving_arrow_u(Map.current_x, Map.current_y - 80)
             if choice == 2:
@@ -86,8 +86,8 @@ def __main__():
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("setting")
         Map.ourScreen.fill((0, 0, 0))
-        print(Action.status)
         Map.ourScreen.blit(Map.map1, (20, 20))
+        print(Action.status)
         pg.draw.rect(Map.ourScreen, (0, 255, 0), pg.Rect(540, 20, 240, 190))  # button part
         Action.straight(555, 35)
         Action.left(630, 35)
@@ -97,6 +97,7 @@ def __main__():
         Action.run(705, 110)
         Action.option(555, 180)
         Action.setting(665, 180)
+        Map.ourScreen.blit(Map.arrow_r, (Map.current_x, Map.current_y))
         pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
         pg.display.flip()
         clock.tick(60)
