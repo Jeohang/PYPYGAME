@@ -6,37 +6,33 @@ point = 80
 
 
 def run_execution_list():
-    if Action.status[0] == 1:
-        for choice in Action.execution_list:
-            if choice == 1:
+    for choice in Action.execution_list:
+        if choice == 1:
+            if Action.status[0] == 1:
                 Action.moving_arrow_r(Map.current_x + 80, Map.current_y)
-            elif choice == 2:
-                Action.moving_arrow_u(Map.current_x, Map.current_y)
-            elif choice == 3:
-                Action.moving_arrow_d(Map.current_x, Map.current_y)
-    if Action.status[0] == 2:
-        for choice in Action.execution_list:
-            if choice == 1:
+            if Action.status[0] == 2:
                 Action.moving_arrow_l(Map.current_x - 80, Map.current_y)
-            if choice == 2:
-                Action.moving_arrow_d(Map.current_x, Map.current_y)
-            if choice == 3:
-                Action.moving_arrow_u(Map.current_x, Map.current_y)
-    if Action.status[0] == 3:
-        for choice in Action.execution_list:
-            if choice == 1:
+            if Action.status[0] == 3:
                 Action.moving_arrow_d(Map.current_x, Map.current_y + 80)
-            if choice == 2:
-                Action.moving_arrow_r(Map.current_x, Map.current_y)
-            if choice == 3:
-                Action.moving_arrow_l(Map.current_x, Map.current_y)
-    if Action.status[0] == 4:
-        for choice in Action.execution_list:
-            if choice == 1:
+            if Action.status[0] == 4:
                 Action.moving_arrow_u(Map.current_x, Map.current_y - 80)
-            if choice == 2:
+        if choice == 2:
+            if Action.status[0] == 1:
+                Action.moving_arrow_u(Map.current_x, Map.current_y)
+            if Action.status[0] == 2:
+                Action.moving_arrow_d(Map.current_x, Map.current_y)
+            if Action.status[0] == 3:
+                Action.moving_arrow_r(Map.current_x, Map.current_y)
+            if Action.status[0] == 4:
                 Action.moving_arrow_l(Map.current_x, Map.current_y)
-            if choice == 3:
+        if choice == 3:
+            if Action.status[0] == 1:
+                Action.moving_arrow_d(Map.current_x, Map.current_y)
+            if Action.status[0] == 2:
+                Action.moving_arrow_u(Map.current_x, Map.current_y)
+            if Action.status[0] == 3:
+                Action.moving_arrow_l(Map.current_x, Map.current_y)
+            if Action.status[0] == 4:
                 Action.moving_arrow_r(Map.current_x, Map.current_y)
 
 
@@ -88,6 +84,7 @@ def __main__():
         Map.ourScreen.fill((0, 0, 0))
         Map.ourScreen.blit(Map.map1, (20, 20))
         print(Action.status)
+        print(Action.execution_list)
         pg.draw.rect(Map.ourScreen, (0, 255, 0), pg.Rect(540, 20, 240, 190))  # button part
         Action.straight(555, 35)
         Action.left(630, 35)
