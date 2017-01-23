@@ -8,7 +8,7 @@ execution_list = []  # 1(s), 2(l), 3(r), 4(a)
 status = [1]
 
 
-def moving_arrow_r(x, y):
+def moving_arrow_r(x: object, y: object) -> object:
     Map.ourScreen.blit(Map.arrow_r, (x, y))
     status.pop()
     status.append(1)
