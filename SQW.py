@@ -7,32 +7,36 @@ point = 80
 
 def run_execution_list():
     for choice in Action.execution_list:
-        if choice == 1:
-            if Action.status[0] == 1:
-                Action.moving_arrow_r(Map.current_x + 80, Map.current_y)
-            if Action.status[0] == 2:
-                Action.moving_arrow_l(Map.current_x - 80, Map.current_y)
-            if Action.status[0] == 3:
-                Action.moving_arrow_d(Map.current_x, Map.current_y + 80)
-            if Action.status[0] == 4:
-                Action.moving_arrow_u(Map.current_x, Map.current_y - 80)
-        if choice == 2:
-            if Action.status[0] == 1:
-                Action.moving_arrow_u(Map.current_x, Map.current_y)
-            if Action.status[0] == 2:
-                Action.moving_arrow_d(Map.current_x, Map.current_y)
-            if Action.status[0] == 3:
+        if choice == "go_straight":
+            if Action.status[0] == "R":
+                Map.current_x += 80
                 Action.moving_arrow_r(Map.current_x, Map.current_y)
-            if Action.status[0] == 4:
+            if Action.status[0] == "L":
+                Map.current_x -= 80
                 Action.moving_arrow_l(Map.current_x, Map.current_y)
-        if choice == 3:
-            if Action.status[0] == 1:
+            if Action.status[0] == "D":
+                Map.current_y += 80
                 Action.moving_arrow_d(Map.current_x, Map.current_y)
-            if Action.status[0] == 2:
+            if Action.status[0] == "U":
+                Map.current_y -= 80
                 Action.moving_arrow_u(Map.current_x, Map.current_y)
-            if Action.status[0] == 3:
+        if choice == "turn_left":
+            if Action.status[0] == "R":
+                Action.moving_arrow_u(Map.current_x, Map.current_y)
+            if Action.status[0] == "L":
+                Action.moving_arrow_d(Map.current_x, Map.current_y)
+            if Action.status[0] == "D":
+                Action.moving_arrow_r(Map.current_x, Map.current_y)
+            if Action.status[0] == "U":
                 Action.moving_arrow_l(Map.current_x, Map.current_y)
-            if Action.status[0] == 4:
+        if choice == "turn_right":
+            if Action.status[0] == "R":
+                Action.moving_arrow_d(Map.current_x, Map.current_y)
+            if Action.status[0] == "L":
+                Action.moving_arrow_u(Map.current_x, Map.current_y)
+            if Action.status[0] == "D":
+                Action.moving_arrow_l(Map.current_x, Map.current_y)
+            if Action.status[0] == "L":
                 Action.moving_arrow_r(Map.current_x, Map.current_y)
 
 
@@ -48,26 +52,27 @@ def __main__():
                     for y in range(35, 90):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("go straight")
-                            Action.execution_list.append(1)
+                            Action.execution_list.append("go_straight")
                 for x in range(630, 690):
                     for y in range(35, 90):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("turn left")
-                            Action.execution_list.append(2)
+                            Action.execution_list.append("turn_left")
                 for x in range(705, 765):
                     for y in range(35, 90):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("turn right")
-                            Action.execution_list.append(3)
+                            Action.execution_list.append("turn_right")
                 for x in range(555, 615):
                     for y in range(110, 165):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("action")
-                            Action.execution_list.append(4)
+                            Action.execution_list.append("action")
                 for x in range(630, 690):
                     for y in range(110, 165):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("clear")
+                            del Action.execution_list[:]
                 for x in range(705, 765):
                     for y in range(110, 165):
                         if (event.pos[0], event.pos[1]) == (x, y):
@@ -82,7 +87,7 @@ def __main__():
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("setting")
         Map.ourScreen.fill((0, 0, 0))
-        Map.ourScreen.blit(Map.map1, (20, 20))
+        Map.ourScreen.blit(Map.map1, (20, 25))
         print(Action.status)
         print(Action.execution_list)
         pg.draw.rect(Map.ourScreen, (0, 255, 0), pg.Rect(540, 20, 240, 190))  # button part

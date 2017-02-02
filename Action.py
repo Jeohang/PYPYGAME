@@ -4,32 +4,32 @@ import SQW
 pg.init()
 
 
-execution_list = []  # 1(s), 2(l), 3(r), 4(a)
-status = [1]
+execution_list = []
+status = ["R"]
 
 
-def moving_arrow_r(x: object, y: object) -> object:
+def moving_arrow_r(x, y):
     Map.ourScreen.blit(Map.arrow_r, (x, y))
     status.pop()
-    status.append(1)
+    status.append("R")
 
 
 def moving_arrow_l(x, y):
     Map.ourScreen.blit(Map.arrow_l, (x, y))
     status.pop()
-    status.append(2)
+    status.append("L")
 
 
 def moving_arrow_d(x, y):
     Map.ourScreen.blit(Map.arrow_d, (x, y))
     status.pop()
-    status.append(3)
+    status.append("D")
 
 
 def moving_arrow_u(x, y):
     Map.ourScreen.blit(Map.arrow_u, (x, y))
     status.pop()
-    status.append(4)
+    status.append("U")
 
 
 def straight(x, y):
