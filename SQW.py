@@ -22,21 +22,21 @@ def run_execution_list():
                 Action.moving_arrow_u(Map.current_x, Map.current_y)
         if choice == "turn_left":
             if Action.status[0] == "R":
-                Action.moving_arrow_u(Map.current_x, Map.current_y)
+                Action.moving_arrow_u(Map.current_x, Map.current_y)  # In this case, the status changes to "L" when the "turn left" button is pressed.
             if Action.status[0] == "L":
-                Action.moving_arrow_d(Map.current_x, Map.current_y)
+                Action.moving_arrow_d(Map.current_x, Map.current_y)  # In this case, the status changes to "R" when the "turn left" button is pressed.
             if Action.status[0] == "D":
                 Action.moving_arrow_r(Map.current_x, Map.current_y)
             if Action.status[0] == "U":
                 Action.moving_arrow_l(Map.current_x, Map.current_y)
         if choice == "turn_right":
             if Action.status[0] == "R":
-                Action.moving_arrow_d(Map.current_x, Map.current_y)
+                Action.moving_arrow_d(Map.current_x, Map.current_y)  # In this case, the status changes to "L" when the "turn right" button is pressed.
             if Action.status[0] == "L":
-                Action.moving_arrow_u(Map.current_x, Map.current_y)
+                Action.moving_arrow_u(Map.current_x, Map.current_y)  # In this case, the status changes to "R" when the "turn right" button is pressed.
             if Action.status[0] == "D":
                 Action.moving_arrow_l(Map.current_x, Map.current_y)
-            if Action.status[0] == "L":
+            if Action.status[0] == "U":
                 Action.moving_arrow_r(Map.current_x, Map.current_y)
 
 
@@ -45,8 +45,6 @@ def __main__():
     finished = False
     while not finished:
         for event in pg.event.get():
-            if event.type == pg.QUIT:
-                finished = True
             if event.type == pg.MOUSEBUTTONDOWN:
                 for x in range(555, 615):
                     for y in range(35, 90):
@@ -85,7 +83,8 @@ def __main__():
                 for x in range(665, 765):
                     for y in range(180, 200):
                         if (event.pos[0], event.pos[1]) == (x, y):
-                            print("setting")
+                            print("Quit")
+                            finished = True
         Map.ourScreen.fill((0, 0, 0))
         Map.ourScreen.blit(Map.map1, (20, 25))
         print(Action.status)
@@ -98,7 +97,7 @@ def __main__():
         Action.clear(630, 110)
         Action.run(705, 110)
         Action.option(555, 180)
-        Action.setting(665, 180)
+        Action.quit(665, 180)
         Map.ourScreen.blit(Map.arrow_r, (Map.current_x, Map.current_y))
         pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
         pg.display.flip()
