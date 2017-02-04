@@ -56,8 +56,8 @@ def run(x, y):
     Map.ourScreen.blit(Map.run, (x, y))
 
 
-def setting(x, y):
-    Map.ourScreen.blit(Map.setting, (x, y))
+def quit(x, y):
+    Map.ourScreen.blit(Map.quit, (x, y))
 
 
 def option(x, y):
