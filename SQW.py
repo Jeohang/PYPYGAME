@@ -3,6 +3,7 @@ import Action
 import Map
 pg.init()
 point = 80
+degree = 90
 
 
 def run_execution_list():
@@ -10,34 +11,36 @@ def run_execution_list():
         if choice == "go_straight":
             if Action.status[0] == "R":
                 Map.current_x += 80
-                Action.moving_arrow_r(Map.current_x, Map.current_y)
+                Action.moving_arrow_r(Map.current_x, Map.current_y)  # work properly
             if Action.status[0] == "L":
                 Map.current_x -= 80
-                Action.moving_arrow_l(Map.current_x, Map.current_y)
+                Action.moving_arrow_l(Map.current_x, Map.current_y)  # work properly
             if Action.status[0] == "D":
                 Map.current_y += 80
-                Action.moving_arrow_d(Map.current_x, Map.current_y)
+                Action.moving_arrow_d(Map.current_x, Map.current_y)  # work properly
             if Action.status[0] == "U":
                 Map.current_y -= 80
-                Action.moving_arrow_u(Map.current_x, Map.current_y)
+                Action.moving_arrow_u(Map.current_x, Map.current_y)  # work properly
         if choice == "turn_left":
             if Action.status[0] == "R":
                 Action.moving_arrow_u(Map.current_x, Map.current_y)  # In this case, the status changes to "L" when the "turn left" button is pressed.
             if Action.status[0] == "L":
                 Action.moving_arrow_d(Map.current_x, Map.current_y)  # In this case, the status changes to "R" when the "turn left" button is pressed.
             if Action.status[0] == "D":
-                Action.moving_arrow_r(Map.current_x, Map.current_y)
+                Action.moving_arrow_r(Map.current_x, Map.current_y)  # work properly
             if Action.status[0] == "U":
-                Action.moving_arrow_l(Map.current_x, Map.current_y)
+                Action.moving_arrow_l(Map.current_x, Map.current_y)  # work properly
         if choice == "turn_right":
             if Action.status[0] == "R":
-                Action.moving_arrow_d(Map.current_x, Map.current_y)  # In this case, the status changes to "L" when the "turn right" button is pressed.
+                rotated_d = pg.transform.rotate(Map.arrow_r, degree)
+                Map.ourScreen.blit(rotated_d, (Map.current_x, Map.current_y))
+                # Action.moving_arrow_d(Map.current_x, Map.current_y)  # In this case, the status changes to "L" when the "turn right" button is pressed.
             if Action.status[0] == "L":
                 Action.moving_arrow_u(Map.current_x, Map.current_y)  # In this case, the status changes to "R" when the "turn right" button is pressed.
             if Action.status[0] == "D":
-                Action.moving_arrow_l(Map.current_x, Map.current_y)
+                Action.moving_arrow_l(Map.current_x, Map.current_y)  # work properly
             if Action.status[0] == "U":
-                Action.moving_arrow_r(Map.current_x, Map.current_y)
+                Action.moving_arrow_r(Map.current_x, Map.current_y)  # work properly
 
 
 def __main__():
