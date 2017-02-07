@@ -32,9 +32,9 @@ def run_execution_list():
                 Action.moving_arrow_l(Map.current_x, Map.current_y)  # work properly
         if choice == "turn_right":
             if Action.status[0] == "R":
-                rotated_d = pg.transform.rotate(Map.arrow_r, degree)
-                Map.ourScreen.blit(rotated_d, (Map.current_x, Map.current_y))
-                # Action.moving_arrow_d(Map.current_x, Map.current_y)  # In this case, the status changes to "L" when the "turn right" button is pressed.
+                # rotated_d = pg.transform.rotate(Map.arrow_r, degree)
+                # Map.ourScreen.blit(rotated_d, (Map.current_x, Map.current_y))
+                Action.moving_arrow_d(Map.current_x, Map.current_y)  # In this case, the status changes to "L" when the "turn right" button is pressed.
             if Action.status[0] == "L":
                 Action.moving_arrow_u(Map.current_x, Map.current_y)  # In this case, the status changes to "R" when the "turn right" button is pressed.
             if Action.status[0] == "D":
@@ -79,6 +79,7 @@ def __main__():
                         if (event.pos[0], event.pos[1]) == (x, y):
                             run_execution_list()
                             print("run")
+                            pg.display.flip()
                 for x in range(555, 655):
                     for y in range(180, 200):
                         if (event.pos[0], event.pos[1]) == (x, y):
@@ -101,10 +102,11 @@ def __main__():
         Action.run(705, 110)
         Action.option(555, 180)
         Action.quit(665, 180)
-        Map.ourScreen.blit(Map.arrow_r, (Map.current_x, Map.current_y))
         pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
-        pg.display.flip()
-        clock.tick(60)
+        Map.ourScreen.blit(Map.arrow_r, (Map.current_x, Map.current_y))  # The direction of the arrow is not updated due to this line.
+        pg.display.flip()                                                # if arrow can be updated only one time,
+        clock.tick(60)                                                   # the direction of arrow enable to change(line 106)
+
 
 
 if __name__ == '__main__':
