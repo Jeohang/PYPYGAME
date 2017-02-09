@@ -40,3 +40,9 @@ def run_execution_list():
                 Action.moving_arrow_l(Map.current_x, Map.current_y)
             if choice == 3:
                 Action.moving_arrow_r(Map.current_x, Map.current_y)
+
+
+rotated = pygame.transform.rotate(img, degree)
+rect = rotated.get_rect()
+rect.center = (x, y)
+screen.blit(rotated, rect)
