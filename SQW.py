@@ -8,7 +8,7 @@ degree = 90
 
 
 def run_execution_list():
-    for choice in Action.execution_list:
+    for choice in Action.execution_list:  # It appears that a bug has occurred in the if statement that accepts the command.
         if choice == "go_straight":
             if Action.status[0] == "R":
                 Map.current_x += 80
