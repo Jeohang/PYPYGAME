@@ -8,34 +8,35 @@ degree = 90
 
 
 def run_execution_list():
-    for choice in Action.execution_list:  # It appears that a bug has occurred in the if statement that accepts the command.
-        if choice == "go_straight":
-            if Action.status[0] == "R":
+    for choice in Action.execution_list:
+        if Action.status[0] == "R":
+            if choice == "go_straight":  # work properly
                 Map.current_x += 80
-            if Action.status[0] == "L":
-                Map.current_x -= 80
-            if Action.status[0] == "D":
-                Map.current_y += 80
-            if Action.status[0] == "U":
-                Map.current_y -= 80
-        if choice == "turn_left":
-            if Action.status[0] == "R":
-                Action.turn_left_r()
-            if Action.status[0] == "L":
-                Action.turn_left_l()
-            if Action.status[0] == "D":
-                Action.turn_left_d()
-            if Action.status[0] == "U":
-                Action.turn_left_u()
-        if choice == "turn_right":
-            if Action.status[0] == "R":
+            if choice == "turn_right":  # does not work at all
                 Action.turn_right_r()
-            if Action.status[0] == "L":
-                Action.turn_right_l()
-            if Action.status[0] == "D":
+            if choice == "turn_left":  # When it works, it turns to "L"
+                Action.turn_left_r()
+        if Action.status[0] == "D":
+            if choice == "go_straight":  # work properly
+                Map.current_y += 80
+            if choice == "turn_right":  # when it works, it displays "R" unconditionally.
                 Action.turn_right_d()
-            if Action.status[0] == "U":
+            if choice == "turn_left":   # work properly
+                Action.turn_left_d()
+        if Action.status[0] == "L":
+            if choice == "go_straight":  # work properly
+                Map.current_x -= 80
+            if choice == "turn_right":  # when it works, it displays "R" unconditionally.
+                Action.turn_right_l()
+            if choice == "turn_left":  # work properly
+                Action.turn_left_l()
+        if Action.status[0] == "U":
+            if choice == "go_straight":  # work properly
+                Map.current_y -= 80
+            if choice == "turn_right":  # work properly
                 Action.turn_right_u()
+            if choice == "turn_left":  # work properly
+                Action.turn_left_u()
 
 
 def __main__():
@@ -100,7 +101,7 @@ def __main__():
         pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
         Map.ourScreen.blit(Map.arrow_r, (Map.current_x, Map.current_y))
         pg.display.flip()
-        clock.tick(60)                                                   
+        clock.tick(60)
 
 
 if __name__ == '__main__':
