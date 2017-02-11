@@ -2,34 +2,38 @@ import Map
 import Action
 import pygame as pg
 pg.init()
-# status = ["R", "D", "L", "U"]
-# i = 0
-# n_status = status[i]
-#
-# if choice == "turn left":
-#     if i < 4:
-#         i += 1
-#     else:
-#         i = 0
-#
-# elif choice == "turn right":
-#     if i > 0:
-#         i -= 1
-#     else:
-#         i = 3
-#
-# if i == 0:
-#
-# elif i == 1:
-#
-# elid
-
-rotated_d = pg.transform.rotate(Map.arrow_d, 90)
-rect = rotated_d.get_rect()
-rect.center = (Map.current_x, Map.current_y)
-Map.ourScreen.blit(rotated_d, rect)
 
 
+def run_execution_list():
+    for choice in Action.execution_list:
+        if Action.status[0] == "R":
+            if choice == "go_straight":
+                Map.current_x += 80
+            if choice == "turn_right":
+                Action.turn_right_r()
+            if choice == "turn_left":
+                Action.turn_left_r()
+        if Action.status[0] == "D":
+            if choice == "go_straight":
+                Map.current_y += 80
+            if choice == "turn_right":
+                Action.turn_right_d()
+            if choice == "turn_left":
+                Action.turn_left_d()
+        if Action.status[0] == "L":
+            if choice == "go_straight":
+                Map.current_x -= 80
+            if choice == "turn_right":
+                Action.turn_right_l()
+            if choice == "turn_left":
+                Action.turn_left_l()
+        if Action.status[0] == "U":
+            if choice == "go_straight":
+                Map.current_y -= 80
+            if choice == "turn_right":
+                Action.turn_right_u()
+            if choice == "turn_left":
+                Action.turn_left_u()
 
 
 
