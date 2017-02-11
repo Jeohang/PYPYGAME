@@ -5,7 +5,7 @@ pg.init()
 
 
 execution_list = []
-status = ["U"]
+status = ["R"]
 
 
 def turn_right_r():
