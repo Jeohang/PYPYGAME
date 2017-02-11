@@ -99,7 +99,7 @@ def __main__():
         Action.option(555, 180)
         Action.quit(665, 180)
         pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
-        Map.ourScreen.blit(Map.arrow_r, (Map.current_x, Map.current_y))
+        Map.ourScreen.blit(Map.arrow_r, (Map.current_x, Map.current_y))  # this line
         pg.display.flip()
         clock.tick(60)
 
