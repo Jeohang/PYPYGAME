@@ -1,49 +1,33 @@
 import Action
 import Map
 
-# Test code does not work at all.
-
 
 def run_execution_list():
-    if Action.status[0] == "R":
-        for choice in Action.execution_list:
-            if choice == 1:
+    for choice in Action.execution_list:
+        if choice == "go_straight":
+            if Action.status[0] == "R":
                 Map.current_x += 80
-                Action.moving_arrow_r(Map.current_x, Map.current_y)
-            if choice == 2:
-                Action.moving_arrow_u(Map.current_x, Map.current_y)
-            if choice == 3:
-                Action.moving_arrow_d(Map.current_x, Map.current_y)
-    if Action.status[0] == "L":
-        for choice in Action.execution_list:
-            if choice == 1:
-                Map.current_x -= 80
-                Action.moving_arrow_l(Map.current_x, Map.current_y)
-            if choice == 2:
-                Action.moving_arrow_d(Map.current_x, Map.current_y)
-            if choice == 3:
-                Action.moving_arrow_u(Map.current_x, Map.current_y)
-    if Action.status[0] == "D":
-        for choice in Action.execution_list:
-            if choice == 1:
-                Map.current_y += 80
-                Action.moving_arrow_d(Map.current_x, Map.current_y)
-            if choice == 2:
-                Action.moving_arrow_r(Map.current_x, Map.current_y)
-            if choice == 3:
-                Action.moving_arrow_l(Map.current_x, Map.current_y)
-    if Action.status[0] == "U":
-        for choice in Action.execution_list:
-            if choice == 1:
+            if Action.status[0] == "U":
                 Map.current_y -= 80
-                Action.moving_arrow_u(Map.current_x, Map.current_y)
-            if choice == 2:
-                Action.moving_arrow_l(Map.current_x, Map.current_y)
-            if choice == 3:
-                Action.moving_arrow_r(Map.current_x, Map.current_y)
-
-
-rotated = pygame.transform.rotate(img, degree)
-rect = rotated.get_rect()
-rect.center = (x, y)
-screen.blit(rotated, rect)
+            if Action.status[0] == "L":
+                Map.current_x -= 80
+            if Action.status[0] == "D":
+                Map.current_y += 80
+        if choice == "turn_left":
+            if Action.status[0] == "R":
+                Action.turn_left_r()
+            if Action.status[0] == "U":
+                Action.turn_left_u()
+            if Action.status[0] == "L":
+                Action.turn_left_l()
+            if Action.status[0] == "D":
+                Action.turn_left_d()
+        if choice == "turn_right":
+            if Action.status[0] == "R":
+                Action.turn_right_r()
+            if Action.status[0] == "U":
+                Action.turn_right_u()
+            if Action.status[0] == "L":
+                Action.turn_right_l()
+            if Action.status[0] == "D":
+                Action.turn_right_d()
