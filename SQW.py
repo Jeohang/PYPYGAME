@@ -1,10 +1,8 @@
 import pygame as pg
 import Action
 import Map
-from pygame.locals import *
 pg.init()
 point = 80
-degree = 90
 
 
 def run_execution_list():
@@ -13,30 +11,46 @@ def run_execution_list():
             if choice == "go_straight":  # work properly
                 Map.current_x += 80
             if choice == "turn_right":  # does not work at all
+                Action.status.pop()
                 Action.turn_right_r()
-            if choice == "turn_left":  # When it works, it turns to "L"
+                Action.status.append("D")
+            if choice == "turn_left":  # When it works, turn_left of "U" state is executed.
+                Action.status.pop()
                 Action.turn_left_r()
+                Action.status.append("U")
         if Action.status[0] == "D":
             if choice == "go_straight":  # work properly
                 Map.current_y += 80
-            if choice == "turn_right":  # when it works, it displays "R" unconditionally.
+            if choice == "turn_right":  # when it works, turn_right of "U" state is executed.
                 Action.turn_right_d()
+                Action.status.pop()
+                Action.status.append("L")
             if choice == "turn_left":   # work properly
                 Action.turn_left_d()
+                Action.status.pop()
+                Action.status.append("R")
         if Action.status[0] == "L":
             if choice == "go_straight":  # work properly
                 Map.current_x -= 80
-            if choice == "turn_right":  # when it works, it displays "R" unconditionally.
+            if choice == "turn_right":  # when it works, turn_right of "U" state is executed.
                 Action.turn_right_l()
+                Action.status.pop()
+                Action.status.append("U")
             if choice == "turn_left":  # work properly
                 Action.turn_left_l()
+                Action.status.pop()
+                Action.status.append("D")
         if Action.status[0] == "U":
             if choice == "go_straight":  # work properly
                 Map.current_y -= 80
             if choice == "turn_right":  # work properly
                 Action.turn_right_u()
+                Action.status.pop()
+                Action.status.append("R")
             if choice == "turn_left":  # work properly
                 Action.turn_left_u()
+                Action.status.pop()
+                Action.status.append("L")
 
 
 def __main__():
