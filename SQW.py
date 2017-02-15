@@ -2,55 +2,40 @@ import pygame as pg
 import Action
 import Map
 pg.init()
+i = 0
 point = 80
 
 
 def run_execution_list():
+    global i
     for choice in Action.execution_list:
-        if Action.status[0] == "R":
-            if choice == "go_straight":  # work properly
+        if choice == "go_straight":
+            if Action.status_list[i] == "R":
                 Map.current_x += 80
-            if choice == "turn_right":  # does not work at all
-                Action.status.pop()
-                Action.turn_right_r()
-                Action.status.append("D")
-            if choice == "turn_left":  # When it works, turn_left of "U" state is executed.
-                Action.status.pop()
-                Action.turn_left_r()
-                Action.status.append("U")
-        if Action.status[0] == "D":
-            if choice == "go_straight":  # work properly
+            if Action.status_list[i] == "D":
                 Map.current_y += 80
-            if choice == "turn_right":  # when it works, turn_right of "U" state is executed.
-                Action.turn_right_d()
-                Action.status.pop()
-                Action.status.append("L")
-            if choice == "turn_left":   # work properly
-                Action.turn_left_d()
-                Action.status.pop()
-                Action.status.append("R")
-        if Action.status[0] == "L":
-            if choice == "go_straight":  # work properly
+            if Action.status_list[i] == "L":
                 Map.current_x -= 80
-            if choice == "turn_right":  # when it works, turn_right of "U" state is executed.
-                Action.turn_right_l()
-                Action.status.pop()
-                Action.status.append("U")
-            if choice == "turn_left":  # work properly
-                Action.turn_left_l()
-                Action.status.pop()
-                Action.status.append("D")
-        if Action.status[0] == "U":
-            if choice == "go_straight":  # work properly
+            if Action.status_list[i] == "U":
                 Map.current_y -= 80
-            if choice == "turn_right":  # work properly
-                Action.turn_right_u()
-                Action.status.pop()
-                Action.status.append("R")
-            if choice == "turn_left":  # work properly
-                Action.turn_left_u()
-                Action.status.pop()
-                Action.status.append("L")
+        if choice == "turn_right":
+            rotated = pg.transform.rotate(Map.arrow_r, -90)
+            rect = rotated.get_rect()
+            rect.center = (Map.current_x + 40, Map.current_y + 40)
+            Map.ourScreen.blit(rotated, rect)
+            if i < 3:
+                i += 1
+            elif i == 3:
+                i = 0
+        if choice == "turn_left":
+            rotated = pg.transform.rotate(Map.arrow_r, 90)
+            rect = rotated.get_rect()
+            rect.center = (Map.current_x + 40, Map.current_y + 40)
+            Map.ourScreen.blit(rotated, rect)
+            if i > 0:
+                i -= 1
+            elif i == 0:
+                i = 3
 
 
 def __main__():
@@ -101,7 +86,7 @@ def __main__():
                             finished = True
         Map.ourScreen.fill((0, 0, 0))
         Map.ourScreen.blit(Map.map1, (20, 25))
-        print(Action.status)
+        print(Action.status_list[i])
         print(Action.execution_list)
         pg.draw.rect(Map.ourScreen, (0, 255, 0), pg.Rect(540, 20, 240, 190))  # button part
         Action.straight(555, 35)
@@ -121,4 +106,3 @@ def __main__():
 if __name__ == '__main__':
     __main__()
 
-# i don't know how to fix the method run_execution_list
