@@ -36,6 +36,13 @@ def run_execution_list():
                 i -= 1
             elif i == 0:
                 i = 3
+        if choice == "action":
+            if Map.current_x == 20 and Map.current_y == 185:
+                Map.current_y += 160
+            elif Map.current_x == 260 and Map.current_y == 25:
+                Map.current_x += 160
+            elif Map.current_x == 420 and Map.current_y == 345:
+                print("Clear!")
 
 
 def __main__():
