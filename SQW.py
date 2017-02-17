@@ -1,4 +1,5 @@
 import pygame as pg
+import time
 import Action
 import Map
 pg.init()
@@ -12,13 +13,13 @@ def run_execution_list():
         if choice == "go_straight":
             if Action.status_list[i] == "R":
                 Map.current_x += 80
-            if Action.status_list[i] == "D":
+            elif Action.status_list[i] == "D":
                 Map.current_y += 80
-            if Action.status_list[i] == "L":
+            elif Action.status_list[i] == "L":
                 Map.current_x -= 80
-            if Action.status_list[i] == "U":
+            elif Action.status_list[i] == "U":
                 Map.current_y -= 80
-        if choice == "turn_right":
+        elif choice == "turn_right":
             rotated = pg.transform.rotate(Map.arrow_r, -90)
             rect = rotated.get_rect()
             rect.center = (Map.current_x + 40, Map.current_y + 40)
@@ -27,7 +28,7 @@ def run_execution_list():
                 i += 1
             elif i == 3:
                 i = 0
-        if choice == "turn_left":
+        elif choice == "turn_left":
             rotated = pg.transform.rotate(Map.arrow_r, 90)
             rect = rotated.get_rect()
             rect.center = (Map.current_x + 40, Map.current_y + 40)
@@ -36,13 +37,14 @@ def run_execution_list():
                 i -= 1
             elif i == 0:
                 i = 3
-        if choice == "action":
+        elif choice == "action":
             if Map.current_x == 20 and Map.current_y == 185:
                 Map.current_y += 160
             elif Map.current_x == 260 and Map.current_y == 25:
                 Map.current_x += 160
             elif Map.current_x == 420 and Map.current_y == 345:
                 print("Clear!")
+        time.sleep(0.5)
 
 
 def __main__():
