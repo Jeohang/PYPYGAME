@@ -6,10 +6,10 @@ pg.init()
 i = 0
 point = 80
 
-
 def run_execution_list():
     global i
     for choice in Action.execution_list:
+        time.sleep(0.5)
         if choice == "go_straight":
             if Action.status_list[i] == "R":
                 Map.current_x += 80
@@ -44,7 +44,6 @@ def run_execution_list():
                 Map.current_x += 160
             elif Map.current_x == 420 and Map.current_y == 345:
                 print("Clear!")
-        time.sleep(0.5)
 
 
 def __main__():
@@ -83,7 +82,6 @@ def __main__():
                         if (event.pos[0], event.pos[1]) == (x, y):
                             run_execution_list()
                             print("run")
-                            pg.display.flip()
                 for x in range(555, 655):
                     for y in range(180, 200):
                         if (event.pos[0], event.pos[1]) == (x, y):
