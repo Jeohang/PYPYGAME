@@ -1,11 +1,12 @@
 import pygame as pg
 import Map
-import SQW
+
 pg.init()
 
 
 execution_list = []
 status_list = ["R", "D", "L", "U"]
+arrow_status = [Map.arrow_r, Map.arrow_d, Map.arrow_l, Map.arrow_u]
 
 
 def straight(x, y):
@@ -38,5 +39,3 @@ def quit(x, y):
 
 def option(x, y):
     Map.ourScreen.blit(Map.option, (x, y))
-
-

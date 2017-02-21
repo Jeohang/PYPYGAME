@@ -6,10 +6,10 @@ pg.init()
 i = 0
 point = 80
 
+
 def run_execution_list():
     global i
     for choice in Action.execution_list:
-        time.sleep(0.5)
         if choice == "go_straight":
             if Action.status_list[i] == "R":
                 Map.current_x += 80
@@ -105,7 +105,7 @@ def __main__():
         Action.option(555, 180)
         Action.quit(665, 180)
         pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
-        Map.ourScreen.blit(Map.arrow_r, (Map.current_x, Map.current_y))  # this line
+        Map.ourScreen.blit(Action.arrow_status[i], (Map.current_x, Map.current_y))  # this line
         pg.display.flip()
         clock.tick(60)
 
