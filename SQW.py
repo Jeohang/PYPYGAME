@@ -44,6 +44,8 @@ def run_execution_list():
                 Map.current_x += 160
             elif Map.current_x == 420 and Map.current_y == 345:
                 print("Clear!")
+    time.sleep(0.5)
+    pg.display.flip()
 
 
 def __main__():
@@ -112,4 +114,3 @@ def __main__():
 
 if __name__ == '__main__':
     __main__()
-#  I am trying to figure out how to rotate the image.
