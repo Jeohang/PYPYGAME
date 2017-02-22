@@ -1,4 +1,5 @@
 import pygame as pg
+import time
 import Action
 import Map
 pg.init()
@@ -12,13 +13,13 @@ def run_execution_list():
         if choice == "go_straight":
             if Action.status_list[i] == "R":
                 Map.current_x += 80
-            if Action.status_list[i] == "D":
+            elif Action.status_list[i] == "D":
                 Map.current_y += 80
-            if Action.status_list[i] == "L":
+            elif Action.status_list[i] == "L":
                 Map.current_x -= 80
-            if Action.status_list[i] == "U":
+            elif Action.status_list[i] == "U":
                 Map.current_y -= 80
-        if choice == "turn_right":
+        elif choice == "turn_right":
             rotated = pg.transform.rotate(Map.arrow_r, -90)
             rect = rotated.get_rect()
             rect.center = (Map.current_x + 40, Map.current_y + 40)
@@ -27,7 +28,7 @@ def run_execution_list():
                 i += 1
             elif i == 3:
                 i = 0
-        if choice == "turn_left":
+        elif choice == "turn_left":
             rotated = pg.transform.rotate(Map.arrow_r, 90)
             rect = rotated.get_rect()
             rect.center = (Map.current_x + 40, Map.current_y + 40)
@@ -36,13 +37,15 @@ def run_execution_list():
                 i -= 1
             elif i == 0:
                 i = 3
-        if choice == "action":
+        elif choice == "action":
             if Map.current_x == 20 and Map.current_y == 185:
                 Map.current_y += 160
             elif Map.current_x == 260 and Map.current_y == 25:
                 Map.current_x += 160
             elif Map.current_x == 420 and Map.current_y == 345:
                 print("Clear!")
+    time.sleep(0.5)
+    pg.display.flip()
 
 
 def __main__():
@@ -81,7 +84,6 @@ def __main__():
                         if (event.pos[0], event.pos[1]) == (x, y):
                             run_execution_list()
                             print("run")
-                            pg.display.flip()
                 for x in range(555, 655):
                     for y in range(180, 200):
                         if (event.pos[0], event.pos[1]) == (x, y):
@@ -105,11 +107,10 @@ def __main__():
         Action.option(555, 180)
         Action.quit(665, 180)
         pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
-        Map.ourScreen.blit(Map.arrow_r, (Map.current_x, Map.current_y))  # this line
+        Map.ourScreen.blit(Action.arrow_status[i], (Map.current_x, Map.current_y))  # this line
         pg.display.flip()
         clock.tick(60)
 
 
 if __name__ == '__main__':
     __main__()
-
