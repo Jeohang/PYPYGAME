@@ -4,11 +4,12 @@ import Action
 import Map
 pg.init()
 i = 0
+j = 0
 point = 80
 
 
 def run_execution_list():
-    global i
+    global i, j
     for choice in Action.execution_list:
         if choice == "go_straight":
             if Action.status_list[i] == "R":
@@ -38,18 +39,24 @@ def run_execution_list():
             elif i == 0:
                 i = 3
         elif choice == "action":
-            if Map.current_x == 20 and Map.current_y == 185:
-                Map.current_y += 160
-            elif Map.current_x == 260 and Map.current_y == 25:
-                Map.current_x += 160
-            elif Map.current_x == 420 and Map.current_y == 345:
-                print("Clear!")
-    time.sleep(0.5)
-    pg.display.flip()
+            if j == 0:
+                pass
+            if j == 1:
+                if Map.current_x == 20 and Map.current_y == 185:
+                    Map.current_y += 160
+                elif Map.current_x == 260 and Map.current_y == 25:
+                    Map.current_x += 160
+                elif Map.current_x == 420 and Map.current_y == 345:
+                    print("Clear!")
+                    j += 1
+                    i = 0
+                    Map.current_x = 20
+                    Map.current_y = 25
+            elif j == 2:
+                pass
 
 
 def __main__():
-    clock = pg.time.Clock()
     finished = False
     while not finished:
         for event in pg.event.get():
@@ -94,7 +101,7 @@ def __main__():
                             print("Quit")
                             finished = True
         Map.ourScreen.fill((0, 0, 0))
-        Map.ourScreen.blit(Map.map1, (20, 25))
+        Map.ourScreen.blit(Map.map_list[j], (20, 25))
         print(Action.status_list[i])
         print(Action.execution_list)
         pg.draw.rect(Map.ourScreen, (0, 255, 0), pg.Rect(540, 20, 240, 190))  # button part
@@ -109,7 +116,6 @@ def __main__():
         pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
         Map.ourScreen.blit(Action.arrow_status[i], (Map.current_x, Map.current_y))  # this line
         pg.display.flip()
-        clock.tick(60)
 
 
 if __name__ == '__main__':
