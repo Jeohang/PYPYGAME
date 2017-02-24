@@ -4,7 +4,7 @@ import Action
 import Map
 pg.init()
 i = 0
-j = 0
+j = 2
 point = 80
 
 
@@ -40,7 +40,12 @@ def run_execution_list():
                 i = 3
         elif choice == "action":
             if j == 0:
-                pass
+                if Map.current_x == 420 and Map.current_y == 345:
+                    print("Clear!")
+                    j += 1
+                    i = 0
+                    Map.current_x = 20
+                    Map.current_y = 25
             if j == 1:
                 if Map.current_x == 20 and Map.current_y == 185:
                     Map.current_y += 160
@@ -53,7 +58,14 @@ def run_execution_list():
                     Map.current_x = 20
                     Map.current_y = 25
             elif j == 2:
-                pass
+                if Map.current_x == 100 and Map.current_y == 345:
+                    Map.current_x = 340
+                    Map.current_y = 25
+                elif Map.current_x == 180 and Map.current_y == 105:
+                    Map.current_x = 420
+                    Map.current_y = 105
+                elif Map.current_x == 340 and Map.current_y == 345:
+                    print("Clear!")
 
 
 def __main__():
