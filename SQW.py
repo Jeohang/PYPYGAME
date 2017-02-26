@@ -4,8 +4,9 @@ import Action
 import Map
 pg.init()
 i = 0
-j = 2
+j = 0
 point = 80
+finished = False
 
 
 def run_execution_list():
@@ -46,6 +47,7 @@ def run_execution_list():
                     i = 0
                     Map.current_x = 20
                     Map.current_y = 25
+                    del Action.execution_list[:]
             if j == 1:
                 if Map.current_x == 20 and Map.current_y == 185:
                     Map.current_y += 160
@@ -57,6 +59,7 @@ def run_execution_list():
                     i = 0
                     Map.current_x = 20
                     Map.current_y = 25
+                    del Action.execution_list[:]
             elif j == 2:
                 if Map.current_x == 100 and Map.current_y == 345:
                     Map.current_x = 340
@@ -69,7 +72,7 @@ def run_execution_list():
 
 
 def __main__():
-    finished = False
+    global finished
     while not finished:
         for event in pg.event.get():
             if event.type == pg.MOUSEBUTTONDOWN:
