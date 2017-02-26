@@ -3,64 +3,64 @@ import time
 import Action
 import Map
 pg.init()
-i = 0
-j = 0
+status_count = 0
+map_count = 0
 point = 80
 finished = False
 
 
 def run_execution_list():
-    global i, j
+    global status_count, map_count
     for choice in Action.execution_list:
         if choice == "go_straight":
-            if Action.status_list[i] == "R":
+            if Action.status_list[status_count] == "R":
                 Map.current_x += 80
-            elif Action.status_list[i] == "D":
+            elif Action.status_list[status_count] == "D":
                 Map.current_y += 80
-            elif Action.status_list[i] == "L":
+            elif Action.status_list[status_count] == "L":
                 Map.current_x -= 80
-            elif Action.status_list[i] == "U":
+            elif Action.status_list[status_count] == "U":
                 Map.current_y -= 80
         elif choice == "turn_right":
             rotated = pg.transform.rotate(Map.arrow_r, -90)
             rect = rotated.get_rect()
             rect.center = (Map.current_x + 40, Map.current_y + 40)
             Map.ourScreen.blit(rotated, rect)
-            if i < 3:
-                i += 1
-            elif i == 3:
-                i = 0
+            if status_count < 3:
+                status_count += 1
+            elif status_count == 3:
+                status_count = 0
         elif choice == "turn_left":
             rotated = pg.transform.rotate(Map.arrow_r, 90)
             rect = rotated.get_rect()
             rect.center = (Map.current_x + 40, Map.current_y + 40)
             Map.ourScreen.blit(rotated, rect)
-            if i > 0:
-                i -= 1
-            elif i == 0:
-                i = 3
+            if status_count > 0:
+                status_count -= 1
+            elif status_count == 0:
+                status_count = 3
         elif choice == "action":
-            if j == 0:
+            if map_count == 0:
                 if Map.current_x == 420 and Map.current_y == 345:
                     print("Clear!")
-                    j += 1
-                    i = 0
+                    map_count += 1
+                    status_count = 0
                     Map.current_x = 20
                     Map.current_y = 25
                     del Action.execution_list[:]
-            if j == 1:
+            if map_count == 1:
                 if Map.current_x == 20 and Map.current_y == 185:
                     Map.current_y += 160
                 elif Map.current_x == 260 and Map.current_y == 25:
                     Map.current_x += 160
                 elif Map.current_x == 420 and Map.current_y == 345:
                     print("Clear!")
-                    j += 1
-                    i = 0
+                    map_count += 1
+                    status_count = 0
                     Map.current_x = 20
                     Map.current_y = 25
                     del Action.execution_list[:]
-            elif j == 2:
+            elif map_count == 2:
                 if Map.current_x == 100 and Map.current_y == 345:
                     Map.current_x = 340
                     Map.current_y = 25
@@ -116,8 +116,8 @@ def __main__():
                             print("Quit")
                             finished = True
         Map.ourScreen.fill((0, 0, 0))
-        Map.ourScreen.blit(Map.map_list[j], (20, 25))
-        print(Action.status_list[i])
+        Map.ourScreen.blit(Map.map_list[map_count], (20, 25))
+        print(Action.status_list[status_count])
         print(Action.execution_list)
         pg.draw.rect(Map.ourScreen, (0, 255, 0), pg.Rect(540, 20, 240, 190))  # button part
         Action.straight(555, 35)
@@ -129,7 +129,7 @@ def __main__():
         Action.option(555, 180)
         Action.quit(665, 180)
         pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
-        Map.ourScreen.blit(Action.arrow_status[i], (Map.current_x, Map.current_y))  # this line
+        Map.ourScreen.blit(Action.arrow_status[status_count], (Map.current_x, Map.current_y))  # this line
         pg.display.flip()
 
 
