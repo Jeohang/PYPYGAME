@@ -120,6 +120,7 @@ def __main__():
         print(Action.status_list[status_count])
         print(Action.execution_list)
         pg.draw.rect(Map.ourScreen, (0, 255, 0), pg.Rect(540, 20, 240, 190))  # button part
+        pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
         Action.straight(555, 35)
         Action.left(630, 35)
         Action.right(705, 35)
@@ -128,8 +129,7 @@ def __main__():
         Action.run(705, 110)
         Action.option(555, 180)
         Action.quit(665, 180)
-        pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
-        Map.ourScreen.blit(Action.arrow_status[status_count], (Map.current_x, Map.current_y))  # this line
+        Map.ourScreen.blit(Action.arrow_status[status_count], (Map.current_x, Map.current_y))
         pg.display.flip()
 
 
