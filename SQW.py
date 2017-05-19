@@ -1,9 +1,9 @@
 import pygame as pg
-import time
 import Action
 import Map
 pg.init()
 status_count = 0
+count_point = 0
 map_count = 0
 point = 80
 finished = False
@@ -101,6 +101,8 @@ def __main__():
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("clear")
                             del Action.execution_list[:]
+                            Map.current_x = 20
+                            Map.current_y = 25
                 for x in range(705, 765):
                     for y in range(110, 165):
                         if (event.pos[0], event.pos[1]) == (x, y):
@@ -135,3 +137,5 @@ def __main__():
 
 if __name__ == '__main__':
     __main__()
+
+ #  The project is scheduled to resume.
