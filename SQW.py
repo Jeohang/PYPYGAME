@@ -81,21 +81,33 @@ def __main__():
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("go straight")
                             Action.execution_list.append("go_straight")
+                            Map.ourScreen.blit(Map.straight_f, (Map.function_x, Map.function_y))
+                            Map.function_x += 50
+                            Map.function_y += 55
                 for x in range(630, 690):
                     for y in range(35, 90):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("turn left")
                             Action.execution_list.append("turn_left")
+                            Map.ourScreen.blit(Map.left_f, (Map.function_x, Map.function_y))
+                            Map.function_x += 50
+                            Map.function_y += 55
                 for x in range(705, 765):
                     for y in range(35, 90):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("turn right")
                             Action.execution_list.append("turn_right")
+                            Map.ourScreen.blit(Map.right_f, (Map.function_x, Map.function_y))
+                            Map.function_x += 50
+                            Map.function_y += 55
                 for x in range(555, 615):
                     for y in range(110, 165):
                         if (event.pos[0], event.pos[1]) == (x, y):
                             print("action")
                             Action.execution_list.append("action")
+                            Map.ourScreen.blit(Map.action_f, (Map.function_x, Map.function_y))
+                            Map.function_x += 50
+                            Map.function_y += 55
                 for x in range(630, 690):
                     for y in range(110, 165):
                         if (event.pos[0], event.pos[1]) == (x, y):
@@ -103,6 +115,8 @@ def __main__():
                             del Action.execution_list[:]
                             Map.current_x = 20
                             Map.current_y = 25
+                            Map.function_x = 610
+                            Map.function_y = 300
                 for x in range(705, 765):
                     for y in range(110, 165):
                         if (event.pos[0], event.pos[1]) == (x, y):
@@ -122,7 +136,7 @@ def __main__():
         print(Action.status_list[status_count])
         print(Action.execution_list)
         pg.draw.rect(Map.ourScreen, (0, 255, 0), pg.Rect(540, 20, 240, 190))  # button part
-        pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
+        #pg.draw.rect(Map.ourScreen, (0, 255, 255), pg.Rect(540, 230, 240, 200))  # function part
         Action.straight(555, 35)
         Action.left(630, 35)
         Action.right(705, 35)
@@ -137,5 +151,3 @@ def __main__():
 
 if __name__ == '__main__':
     __main__()
-
- #  The project is scheduled to resume.
